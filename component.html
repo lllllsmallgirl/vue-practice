@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="hello-vue" class="demo">
+        <input v-model="inputValue" />
+
+        <!--  注意把东西写在绑定vue的id下 -->
+        <button v-on:click="addBtn">Add</button>
+        <ul>
+            <todo-item v-for="(item,index) of list" v-bind:content="item" v-bind:index="index">
+        </ul>
+
+    </div>
+
+
+    <script>
+        const Vueapp = {
+            data() {
+                return {
+                    inputValue: '',//data里都是冒号
+                    list: [],
+                }
+            },
+            methods: {
+                addBtn() {
+                    this.list.push(this.inputValue)
+                    this.inputValue = ''
+                }
+            },
+        }
+        const app = Vue.createApp(Vueapp) //必须先创建实例
+
+        app.component('todo-item', {
+            props: ['content', 'index'],//通过props向子组件传递数据
+            template: '<li>{{content}}</li>'
+        })
+
+        app.mount('#hello-vue')
+    </script>
+</body>
+
+</html>
