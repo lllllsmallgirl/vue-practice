@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red{
+            color:red
+        }
+        .green{
+            color:green 
+        }
+    </style>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script>
+
+    const app = Vue.createApp({
+        data() {
+            return {
+                classString:'red',
+                classString2:'green',
+                classObject:{ red : false , green : true}
+            }
+        },
+        template: `
+        <div :class="classString">
+             Hello World 
+             <demo :class="classString2">
+        </div>`   //反引号``可以定义多行字符串
+    });
+
+    app.component('demo',{
+        template:'<div>single</div>'
+    })
+
+    const vm = app.mount('#root');
+</script>
+
+</html>

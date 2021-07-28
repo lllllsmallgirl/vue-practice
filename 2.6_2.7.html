@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script>
+//计算属性computed 和 监听器watch
+    const app = Vue.createApp({
+        data() {
+            return {
+                message: 'hello world',
+                count: 2,
+                price: 5,
+            }
+        },
+        watch: {
+            //监听价格price发生变化之后3s会输出price changed
+            //price(current,prev) 有两个参数
+            price(){
+                setTimeout(()=>{
+                    console.log('price changed')
+                },3000)
+            }
+        },
+        computed: {
+            //当计算的内容发生改变时，才会重新计算
+            total() {
+                return Date.now()
+            }
+        },
+        methods: {
+            //只要页面重新渲染了，就会重新计算
+            getTotal(){
+                return Date.now()
+            }
+        },
+
+        template: '<div>{{message}}{{getTotal()}}</div>'
+    });
+    const vm = app.mount('#root');
+</script>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script>
+    // v-html="" ; 
+    // v-bind:title="" ; 
+    // 可以写js表达式，但是js语句达咩 ; 
+    // v-once只使用一次变量 ; 
+    // v-if="" div标签是否展示
+    // v-on:可以用@代替  @click=""
+    // v-bind可以省略  :title=""
+    const app = Vue.createApp({
+        data() {
+            return {
+                message:'<strong>hello world</strong>'
+            }
+        },
+        template:'<div v-html="message"></div>'
+    });
+    const vm = app.mount('#root');
+</script>
+</html>
